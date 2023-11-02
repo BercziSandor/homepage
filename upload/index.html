@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #A49966; /* Green background color */
+        }
+        div {
+            font-size: 28px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 58px;
+            color: #363020; /* Orange text color */
+        }
+
+        form {
+            width: 80%;
+            max-width: 1600px;
+            margin: 0 auto;
+            background-color: #fff; /* Form background color (remains white) */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 38px; /* Adjust the font size */
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #A49966;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 38px; /* Adjust the font size */
+        }
+    </style>
+</head>
+<body>
+    <h2>Upload Files</h2>
+    <div>Allowed file extensions: jpg, zip, pdf, docx</div>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="fileToUpload[]" id="fileToUpload" multiple>
+        <input type="submit" value="Upload Files" name="submit" onclick="return checkFileSelected()">
+    </form>
+
+    <script>
+        function checkFileSelected() {
+            var fileInput = document.getElementById("fileToUpload");
+            if (fileInput.files.length === 0) {
+                alert("Please select at least one file to upload!");
+                return false; // Return value "false" to interrupt the submit event
+            }
+            return true; // If at least one file is selected, the submit event can proceed
+        }
+    </script>
+</body>
+</html>
