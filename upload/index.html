@@ -1,87 +1,80 @@
 <!DOCTYPE html>
+
 <html>
+    <head>
+        <title>File Upload</title>
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <!--    <style>-->
+    <!--        body {-->
+    <!--            font-family: Arial, sans-serif;-->
+    <!--            text-align: center;-->
+    <!--            background-color: #A4a564; /* background color */-->
+    <!--        }-->
+    <!--        div {-->
+    <!--            font-size: 28px;-->
+    <!--        }-->
 
-<!--
-A49966 / 363020
-#a4a564 / #6b6c30
+    <!--        h2 {-->
+    <!--            margin-top: 20px;-->
+    <!--            font-size: 58px;-->
+    <!--            color: #6b6c30; /* Text color */-->
+    <!--        }-->
 
-közep   vilagos sotet
-#798a73 #e0dac9 #3f403c
+    <!--        form {-->
+    <!--            width: 80%;-->
+    <!--            max-width: 1500px;-->
+    <!--            margin: 0 auto;-->
+    <!--            background-color: #fff; /* Form background color */-->
+    <!--            padding: 20px;-->
+    <!--            border-radius: 10px;-->
+    <!--        }-->
 
--->
-<head>
-    <title>File Upload</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #A4a564; /* background color */
-        }
-        div {
-            font-size: 28px;
-        }
+    <!--        input[type="file"] {-->
+    <!--            width: 90%;-->
+    <!--            padding: 10px;-->
+    <!--            margin: 10px 0;-->
+    <!--            border: 1px solid #ccc;-->
+    <!--            border-radius: 5px;-->
+    <!--            font-size: 24px;-->
+    <!--        }-->
 
-        h2 {
-            margin-top: 20px;
-            font-size: 58px;
-            color: #6b6c30; /* Text color */
-        }
+    <!--        input[type="submit"] {-->
+    <!--            width: 80%;-->
+    <!--            padding: 10px;-->
+    <!--            background-color: #000; /* background color */-->
+    <!--            color: white;-->
+    <!--            border: none;-->
+    <!--            border-radius: 5px;-->
+    <!--            cursor: pointer;-->
+    <!--            font-size: 38px;-->
+    <!--        }-->
+    <!--    </style>-->
+    </head>
+    <body>
+        <h2>Upload Files</h2>
 
-        form {
-            width: 80%;
-            max-width: 1500px;
-            margin: 0 auto;
-            background-color: #fff; /* Form background color */
-            padding: 20px;
-            border-radius: 10px;
-        }
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="fileToUpload[]" id="fileToUpload" multiple>
+            <input type="submit" value="Upload Files" name="submit" onclick="return checkFileSelected()">
+        </form>
+        </br>
+        </br>
+        <div>Allowed file extensions:</div>
+        <div>  - jpg, zip, pdf, docx</div>
+        </br>
+        <div>Max file size:</div>
+        <div> - 150 MB for ZIP files</div>
+        <div> - 10 MB for other files</div>
 
-        input[type="file"] {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 24px;
-        }
-
-        input[type="submit"] {
-            width: 80%;
-            padding: 10px;
-            background-color: #000; /* background color */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 38px;
-        }
-    </style>
-</head>
-<body>
-    <h2>Upload Files</h2>
-
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <input type="file" name="fileToUpload[]" id="fileToUpload" multiple>
-        <input type="submit" value="Upload Files" name="submit" onclick="return checkFileSelected()">
-    </form>
-    </br>
-    </br>
-    <div>Allowed file extensions:</div>
-    <div>  - jpg, zip, pdf, docx</div>
-    </br>
-    <div>Max file size:</div>
-    <div> - 150 MB for ZIP files</div>
-    <div> - 10 MB for other files</div>
-
-    <script>
-        function checkFileSelected() {
-            var fileInput = document.getElementById("fileToUpload");
-            if (fileInput.files.length === 0) {
-                alert("Please select at least one file to upload!");
-                return false; // Return value "false" to interrupt the submit event
+        <script>
+            function checkFileSelected() {
+                var fileInput = document.getElementById("fileToUpload");
+                if (fileInput.files.length === 0) {
+                    alert("Please select at least one file to upload!");
+                    return false; // Return value "false" to interrupt the submit event
+                }
+                return true; // If at least one file is selected, the submit event can proceed
             }
-            return true; // If at least one file is selected, the submit event can proceed
-        }
-    </script>
-</body>
+        </script>
+    </body>
 </html>
