@@ -2,7 +2,7 @@
 // Define constants
 define('MAX_FILE_SIZE', 10485760);  // 10 MB (in bytes)
 define('MAX_ZIP_SIZE', 157286400);  // 150 MB for ZIP files (in bytes)
-define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'zip', 'pdf', 'docx' ]);
+define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'zip', 'pdf', 'docx' ]);
 
 if (isset($_POST["submit"])) {
     // Create a directory with a name based on the current timestamp
@@ -71,7 +71,7 @@ if (isset($_POST["submit"])) {
         // The count of files is 2 because of . and ..
         rmdir($targetDirectory);
     }
-    
+
     // Redirect back to the form page
     echo '<script>window.location = "index.html";</script>';
 
