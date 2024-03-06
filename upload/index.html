@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>File Upload</title>
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    </head>
+    <body>
+        <h2>Upload Files</h2>
+
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" name="fileToUpload[]" id="fileToUpload" accept=".jpg,.jpeg,.png,.zip,.pdf,.docx" multiple>
+            <input type="button" value="Upload Files" onclick="uploadFiles()">
+        </form>
+        <div id="progressBarContainer" style="display:none;">
+            <progress id="uploadProgress" value="0" max="100"></progress> <span id="progressPercent">0%</span>
+        </div>
+        </br>
+        </br>
+        <div>Allowed file extensions:</div>
+        <div>  - jp(e)g, png, zip, pdf, docx</div>
+        </br>
+        <div>Max file size:</div>
+        <div> - 150 MB for ZIP files</div>
+        <div> - 10 MB for other files</div>
+
+        <script>
+            function uploadFiles() {
+                var files = document.getElementById('fileToUpload').files;
+                var formData = new FormData();
+
+                for (var i = 0; i < files.length; i++) {
+                    formData.append('fileToUpload[]', files[i]);
+                }
+
+                var xhr = new XMLHttpRequest();
+
+                // Update progress bar
+                xhr.upload.addEventListener("progress", function(e) {
+                    var percent = e.loaded / e.total * 100;
+                    document.getElementById('uploadProgress').value = percent;
+                    document.getElementById('progressPercent').innerText = percent.toFixed(0) + '%';
+                }, false);
+
+                // File uploaded
+                xhr.addEventListener("load", function(e) {
+                    alert('Upload complete!');
+                    // Reset progress bar
+                    document.getElementById('progressBarContainer').style.display = 'none';
+                    document.getElementById('uploadProgress').value = 0;
+                    document.getElementById('progressPercent').innerText = '0%';
+                }, false);
+
+                xhr.open('POST', 'upload.php');
+                xhr.send(formData);
+
+                // Show the progress bar
+                document.getElementById('progressBarContainer').style.display = 'block';
+            }
+        </script>
+
+
+    </body>
+</html>
