@@ -1,9 +1,10 @@
 <?php
 // Define constants
-define('MAX_FILE_SIZE', 10485760);  // 10 MB (in bytes)
-define('MAX_ZIP_SIZE', 157286400);  // 150 MB for ZIP files (in bytes)
-define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'zip', 'pdf', 'docx']);
-
+define('MAX_NORMAL_SIZE', 10 * 1048576);  // 10 MB (in bytes)
+define('MAX_BIG_SIZE', 150 * 1048576);  // 150 MB for ZIP files (in bytes)
+define('NORMAL_FILE_EXTENSIONS', ['jpg', 'jpeg', 'png', 'pdf', 'docx']);
+define('BIG_FILE_EXTENSIONS', ['zip', 'apk']);
+define('ALLOWED_EXTENSIONS', array_merge(NORMAL_FILE_EXTENSIONS, BIG_FILE_EXTENSIONS));
 $response = [
     'success' => false,
     'messages' => []
@@ -33,9 +34,9 @@ if (isset($_FILES["fileToUpload"])) {
             $response['messages'][] = "$fileName: The file already exists.";
         } elseif (!in_array($fileType, ALLOWED_EXTENSIONS)) {
             $response['messages'][] = "$fileName: File type $fileType not allowed. Allowed extensions: " . implode(', ', ALLOWED_EXTENSIONS);
-        } elseif ($fileType == "zip" && $_FILES["fileToUpload"]["size"][$key] > MAX_ZIP_SIZE) {
+        } elseif (in_array($fileType, BIG_FILE_EXTENSIONS)  && $_FILES["fileToUpload"]["size"][$key] > MAX_BIG_SIZE ) {
             $response['messages'][] = "$fileName: File too big (max. 150MB)";
-        } elseif ($_FILES["fileToUpload"]["size"][$key] > MAX_FILE_SIZE) {
+        } elseif (in_array($fileType, NORMAL_FILE_EXTENSIONS) && $_FILES["fileToUpload"]["size"][$key] > MAX_NORMAL_SIZE) {
             $response['messages'][] = "$fileName: File too big (max. 10MB)";
         } elseif (!is_file($_FILES["fileToUpload"]["tmp_name"][$key])) {
             $response['messages'][] = "$fileName: Internal error.";
