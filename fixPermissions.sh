@@ -1,7 +1,8 @@
 #!/bin/bash
 
+cd www/upload
 ls -la
-chown -R nobody:nobody ./
 [ -d uploads ] || mkdir uploads
-chown -R nobody:nobody uploads
+chown -R nobody:nobody ./
 ls -la
+cd -
