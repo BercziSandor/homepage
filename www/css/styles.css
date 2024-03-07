@@ -39,7 +39,7 @@ input[type="file"] {
   font-size: 24px;
 }
 
-input[type="submit"] {
+input[type="button"] {
   width: 80%;
   padding: 10px;
   background-color: #000; /* background color */
