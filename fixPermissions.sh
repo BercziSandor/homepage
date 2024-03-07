@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 cd www/upload
 ls -la
