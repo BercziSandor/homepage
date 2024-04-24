@@ -1,3 +1,4 @@
 *.mp4
 www/upload/uploads/*
 .idea/
+logs/
