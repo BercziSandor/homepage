@@ -5,6 +5,7 @@ define('MAX_BIG_SIZE', 150 * 1048576);  // 150 MB for ZIP files (in bytes)
 define('NORMAL_FILE_EXTENSIONS', ['jpg', 'jpeg', 'png', 'pdf', 'docx']);
 define('BIG_FILE_EXTENSIONS', ['zip', 'apk']);
 define('ALLOWED_EXTENSIONS', array_merge(NORMAL_FILE_EXTENSIONS, BIG_FILE_EXTENSIONS));
+
 $response = [
     'success' => false,
     'messages' => []
