@@ -1,7 +1,7 @@
 <?php
 // Define constants
-define('MAX_FILE_SIZE', 10485760);  // 10 MB (in bytes)
-define('MAX_ZIP_SIZE', 157286400);  // 150 MB for ZIP files (in bytes)
+define('MAX_FILE_SIZE', 10 * 1048576);  // 10 MB (in bytes)
+define('MAX_ZIP_SIZE', 150 * 1048576);  // 150 MB for ZIP files (in bytes)
 define('ALLOWED_EXTENSIONS', ['jpg', 'jpeg', 'png', 'zip', 'pdf', 'docx']);
 
 $response = [
